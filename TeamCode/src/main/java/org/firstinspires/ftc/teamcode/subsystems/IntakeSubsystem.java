@@ -9,8 +9,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
     //Define motors and servos
     private DcMotor intakeMotor;
-    private DcMotor intakeSlideMotor;
 
+    private Servo intakeSlideLeft;
+    private Servo intakeSlideRight;
     public Servo intakePivot;
 
     // Define variables
@@ -22,8 +23,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public IntakeSubsystem(final HardwareMap hMap){
         intakeMotor = hMap.get(DcMotor.class, "intakeMotor");
-        intakeSlideMotor = hMap.get(DcMotor.class, "intakeSlideMotor");
 
+        intakeSlideLeft = hMap.get(Servo.class, "intakeSlideLeft");
+        intakeSlideRight = hMap.get(Servo.class, "intakeSlideRight");
         intakePivot = hMap.get(Servo.class, "pivotIntake");
     }
 
@@ -39,24 +41,22 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void intakeSlidesIn() {
         //Brings the slides in
-        intakeSlideMotor.setTargetPosition(intakeSlidesInPosition);
-        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        intakeSlideMotor.setPower(1);
+        intakeSlideLeft.setPosition(intakeSlidesInPosition);
+        intakeSlideRight.setPosition(intakeSlidesInPosition);
     }
 
     public boolean AreIntakeSlidesIn() {
-        return intakeSlideMotor.getCurrentPosition() < (intakeSlidesInPosition + 50);
+        return true;
     }
 
     public void intakeSlidesOut() {
         //Brings the slides out
-        intakeSlideMotor.setTargetPosition(intakeSlidesOutPosition);
-        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        intakeSlideMotor.setPower(1);
+        intakeSlideLeft.setPosition(intakeSlidesOutPosition);
+        intakeSlideRight.setPosition(intakeSlidesOutPosition);
     }
 
     public boolean AreIntakeSlidesOut() {
-        return intakeSlideMotor.getCurrentPosition() > (intakeSlidesInPosition - 50);
+        return true;
     }
 
     public void intakePivotUp () {
@@ -64,7 +64,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public boolean IsIntakePivotedUp() {
-        return intakePivot.getPosition() > (intakePivotUpPosition - 0.3);
+        return true;
     }
 
     public void intakePivotDown () {
@@ -72,6 +72,6 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public boolean IsIntakePivotedDown() {
-        return intakePivot.getPosition() < (intakePivotDownPosition + 0.3);
+        return true;
     }
 }
