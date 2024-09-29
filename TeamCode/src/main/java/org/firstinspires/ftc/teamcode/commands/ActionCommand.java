@@ -7,6 +7,8 @@ import com.acmerobotics.roadrunner.Action;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.Subsystem;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 import java.util.Set;
 
 public class ActionCommand implements Command {
@@ -14,9 +16,11 @@ public class ActionCommand implements Command {
     private final Set<Subsystem> requirements;
     private boolean finished = false;
 
+
     public ActionCommand(Action action, Set<Subsystem> requirements) {
         this.action = action;
         this.requirements = requirements;
+
     }
 
     @Override
@@ -30,6 +34,7 @@ public class ActionCommand implements Command {
         action.preview(packet.fieldOverlay());
         finished = !action.run(packet);
         FtcDashboard.getInstance().sendTelemetryPacket(packet);
+
     }
 
     @Override

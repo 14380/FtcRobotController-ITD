@@ -36,6 +36,8 @@ public class OTOSDrive extends MecanumDrive {
         System.out.println(otos.calibrateImu(255, true));
         System.out.println("OTOS calibration complete!");
 
+        otos.setPosition(RRPoseToOTOSPose(pose));
+
     }
 
     @Override

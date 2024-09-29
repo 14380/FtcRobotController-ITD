@@ -44,9 +44,9 @@ public class BasketAuto  extends CommandOpMode {
         CommandScheduler.getInstance().schedule(
                 new WaitUntilCommand(this::isStarted).andThen(
                     new SequentialCommandGroup(
-                            new ActionCommand(dropOffAction, null),
-                            new IntakeOnCommand(intakeSubsystem),
-                            new ActionCommand(parkAction, null)
+                           // new ActionCommand(dropOffAction, null),
+                           // new IntakeOnCommand(intakeSubsystem),
+                           // new ActionCommand(parkAction, null)
                     )
                 )
         );
