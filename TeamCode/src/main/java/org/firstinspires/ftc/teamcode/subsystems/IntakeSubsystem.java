@@ -93,7 +93,33 @@ public class IntakeSubsystem extends SubsystemBase {
         return intakePivot.getPosition() < (intakePivotDownPosition + 0.3);
     }
 
+    public void setDesiredColourBlue() {
+        desiredColour = SampleColour.BLUE;
+    }
+
+    public boolean IsDesiredColourBlueSet() {
+        return true;
+    }
+
+    public void setDesiredColourRed() {
+        desiredColour = SampleColour.RED;
+    }
+
+    public boolean IsDesiredColourRedSet() {
+        return true;
+    }
+
+    public void setDesiredColourNeutral() {
+        desiredColour = SampleColour.NEUTRAL;
+    }
+
+    public boolean IsDesiredColourNeutralSet() {
+        return true;
+    }
+
     public SampleColour getCurrentIntakeColour(){
+
+
         //TODO: add colour detection here.
         //TODO: cache this for 20 - 40 ms
         return SampleColour.NONE;

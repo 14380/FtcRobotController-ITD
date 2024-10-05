@@ -7,6 +7,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.commands.ColourAwareIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DefaultDrive;
+import org.firstinspires.ftc.teamcode.commands.DesiredColourBlueCommand;
+import org.firstinspires.ftc.teamcode.commands.DesiredColourNeutralCommand;
+import org.firstinspires.ftc.teamcode.commands.DesiredColourRedCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeOffCommand;
 import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
@@ -29,6 +32,19 @@ public class BlueTeleOp  extends CommandOpMode {
 
         register(m_drive);
         m_drive.setDefaultCommand(m_driveCommand);
+
+        //Changes the desired colour
+        m_driverOp.getGamepadButton(GamepadKeys.Button.X).whenPressed(
+                new DesiredColourBlueCommand(intakeSubsystem)
+        );
+
+        m_driverOp.getGamepadButton(GamepadKeys.Button.B).whenPressed(
+                new DesiredColourRedCommand(intakeSubsystem)
+        );
+
+        m_driverOp.getGamepadButton(GamepadKeys.Button.Y).whenPressed(
+                new DesiredColourNeutralCommand(intakeSubsystem)
+        );
 
         //TODO: we need to have commands that can set the desired colour
         m_driverOp.getGamepadButton(GamepadKeys.Button.B).whenPressed(
