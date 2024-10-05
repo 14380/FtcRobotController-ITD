@@ -17,21 +17,21 @@ import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 @TeleOp(name = "Blue TeleOp")
 public class BlueTeleOp  extends CommandOpMode {
 
-    private DriveSubsystem m_drive;
-    private DefaultDrive m_driveCommand;
+    //private DriveSubsystem m_drive;
+    //private DefaultDrive m_driveCommand;
 
     private IntakeSubsystem intakeSubsystem;
     private GamepadEx m_driverOp;
     @Override
     public void initialize() {
-        m_drive = new DriveSubsystem(hardwareMap);
+        //_drive = new DriveSubsystem(hardwareMap);
         intakeSubsystem = new IntakeSubsystem(hardwareMap);
         m_driverOp = new GamepadEx(gamepad1);
 
-        m_driveCommand = new DefaultDrive(m_drive, () -> m_driverOp.getLeftX(),  () -> m_driverOp.getLeftY(), () -> m_driverOp.getRightX());
+        /*m_driveCommand = new DefaultDrive(m_drive, () -> m_driverOp.getLeftX(),  () -> m_driverOp.getLeftY(), () -> m_driverOp.getRightX());
 
         register(m_drive);
-        m_drive.setDefaultCommand(m_driveCommand);
+        m_drive.setDefaultCommand(m_driveCommand);*/
 
         //Changes the desired colour
         m_driverOp.getGamepadButton(GamepadKeys.Button.X).whenPressed(
@@ -47,7 +47,7 @@ public class BlueTeleOp  extends CommandOpMode {
         );
 
         //TODO: we need to have commands that can set the desired colour
-        m_driverOp.getGamepadButton(GamepadKeys.Button.B).whenPressed(
+        m_driverOp.getGamepadButton(GamepadKeys.Button.A).whileHeld(
                 new ColourAwareIntakeCommand(intakeSubsystem)
         ).whenReleased(
                 new IntakeOffCommand(intakeSubsystem)

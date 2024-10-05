@@ -1,9 +1,14 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import android.graphics.Color;
+
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 
 public class IntakeSubsystem extends SubsystemBase {
 
@@ -13,12 +18,16 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public Servo intakePivot;
 
+    private NormalizedColorSensor colourSensor;
+
     // Define variables
     private int intakeSlidesInPosition = 0;
     private int intakeSlidesOutPosition = 0;
 
     private int intakePivotUpPosition = 0;
     private int intakePivotDownPosition = 0;
+
+    private final float[] hsvValues = new float[3];
 
     private SampleColour desiredColour = SampleColour.NONE;
 
@@ -39,6 +48,8 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeSlideMotor = hMap.get(DcMotor.class, "intakeSlideMotor");
 
         intakePivot = hMap.get(Servo.class, "pivotIntake");
+
+        colourSensor = hMap.get(NormalizedColorSensor.class, "colourSensor");
     }
 
     public void Intake() {
@@ -118,10 +129,18 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public SampleColour getCurrentIntakeColour(){
+        NormalizedRGBA colors = colourSensor.getNormalizedColors();
+        Color.colorToHSV(colors.toColor(), hsvValues);
 
-
-        //TODO: add colour detection here.
-        //TODO: cache this for 20 - 40 ms
+        if(hsvValues[0] > 200) {
+            return SampleColour.BLUE;
+        }
+        if(hsvValues[0] >= 70 && hsvValues[0] <= 100) {
+            return SampleColour.NEUTRAL;
+        }
+        if(hsvValues[0] >= 20) {
+            return SampleColour.RED;
+        }
         return SampleColour.NONE;
     }
 
