@@ -17,51 +17,13 @@ public class MeepMeepTesting {
                 .setDimensions(18,18)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(25, -61, Math.toRadians(90)))
-                .strafeToConstantHeading(new Vector2d(47, -44))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-25, -61, Math.toRadians(90)))
+                .strafeToConstantHeading(new Vector2d(-47, -44))
                 .waitSeconds(0.25)
 
-                .turnTo(Math.toRadians(70))
-                        .waitSeconds(0.25)
-
-                        .strafeToConstantHeading(new Vector2d(57,-44))
-                        .waitSeconds(0.25)
-
-
-                        .splineToLinearHeading(new Pose2d(35, -49, Math.toRadians(-45)), Math.toRadians(-135))
+                .setTangent(Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(35, -49, Math.toRadians(-45)), Math.toRadians(-135))
                 .waitSeconds(0.25)
-
-                                .strafeTo(new Vector2d(12,-37))
-                //.splineToLinearHeading(new Pose2d(10, -35, Math.toRadians(-90)), Math.toRadians(90))
-                .waitSeconds(0.25)
-
-                .strafeTo(new Vector2d(35, -49))
-                .waitSeconds(0.25)
-
-                .strafeTo(new Vector2d(12,-37))
-                .waitSeconds(0.25)
-
-                .strafeTo(new Vector2d(35, -49))
-                .waitSeconds(0.25)
-
-                .strafeTo(new Vector2d(12,-37))
-                .waitSeconds(0.25)
-
-                .strafeTo(new Vector2d(35, -49))
-                .waitSeconds(0.25)
-
-                .strafeTo(new Vector2d(12,-37))
-                .waitSeconds(0.25)
-
-                .strafeTo(new Vector2d(35, -49))
-                .waitSeconds(0.25)
-
-                .strafeTo(new Vector2d(12,-37))
-                .waitSeconds(0.25)
-
-                .strafeTo(new Vector2d(35, -49))
-                .waitSeconds(0.25)
-
                 .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_JUICE_DARK)
